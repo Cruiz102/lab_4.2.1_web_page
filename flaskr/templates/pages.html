@@ -5,12 +5,20 @@ Wiki Pages
 {% endblock %}
 
 {% block content %}
-<h3>Pages contained in this Wiki</h3>
-<ul>
-    {% for page in all_pages %}
-    <li><a href="{{ url_for('pages', name=page) }}">{{page}}</a></li>
-    {% endfor %}
-</ul>
+<h3 class="title is-4">Pages contained in this Wiki</h3>
 
+<div class="content">
+    <ul>
+        {% for page in all_pages %}
+        <li class="box">
+            <a class="button is-link is-light is-small" href="{{ url_for('pages', name=page) }}">
+                {{ page }}
+            </a>
+            {% if page_previews and page in page_previews %}
+            <p class="page-preview">{{ page_previews[page] }}</p>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}
-
